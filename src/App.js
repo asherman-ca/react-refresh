@@ -32,6 +32,7 @@ class App extends React.Component {
               id: snapShot.id,
               ...snapShot.data()
             }
+            // setstate is async and requires console log to be called in this manner to avoid sync problems
           }, () => console.log(this.state))
         })
       } else {
