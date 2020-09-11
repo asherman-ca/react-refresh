@@ -20,11 +20,23 @@ class App extends React.Component {
   unsubscribeFromAuth = null
 
   componentDidMount(){
-    // this connection stays open as long as the application component is mounted
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
-      // this.setState({ currentUser: user })
-      createUserProfileDocument(user);
-      // console.log(user)
+    // this connection (onAuthStateChanged) stays open as long as the application component is mounted. Always listening/reactive despite being in didMount
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      // userAuth is null if no one is signed in
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth)
+
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          }, () => console.log(this.state))
+        })
+      } else {
+        this.setState({ currentUser: userAuth })
+      }
     })
   }
 
