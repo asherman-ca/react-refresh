@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './App.css';
@@ -11,13 +11,6 @@ import Header from './components/header/header.component.jsx';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 
 class App extends React.Component {
-  // constructor(){
-  //   super()
-
-  //   this.state = {
-  //     currentUser: null
-  //   }
-  // }
 
   unsubscribeFromAuth = null
 
@@ -53,21 +46,34 @@ class App extends React.Component {
   }
 
   render(){
+    const {currentUser} = this.props;
+
     return (
       <div>
         <Header />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
-          <Route path='/signin' component={SignInAndSignUpPage} />
+          <Route 
+            exact path='/signin' 
+            render={() => 
+              currentUser ?
+              ( <Redirect to='/' /> ) : 
+              ( <SignInAndSignUpPage /> )
+            }
+          />
         </Switch>
       </div>
     )
   }
 }
 
+const bindStoreToProps = store => ({
+  currentUser: store.user.currentUser
+})
+
 const bindActionToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 })
 
-export default connect(null, bindActionToProps)(App);
+export default connect(bindStoreToProps, bindActionToProps)(App);
