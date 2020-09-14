@@ -34,9 +34,9 @@ const Header = ({ currentUser, hidden }) => (
   </div>
 );
 
-const bindStoreToProps = store => ({
-  currentUser: store.user.currentUser,
-  hidden: store.cart.hidden
+const bindStoreToProps = ({ user: { currentUser }, cart: { hidden }}) => ({
+  currentUser: currentUser,
+  hidden: hidden
 })
 
 export default connect(bindStoreToProps)(Header);
