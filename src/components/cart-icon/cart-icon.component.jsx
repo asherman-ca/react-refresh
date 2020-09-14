@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { createStructuredSelector } from 'reselect'
 
 import { toggleCartHidden } from '../../redux/cart/cart.actions'
 import { selectCartItemsCount } from '../../redux/cart/cart.selectors'
@@ -19,8 +20,8 @@ const bindActionToProps = dispatch => ({
 })
 
 // memoized selector used here
-const bindStoreToProps = store => ({
-  itemCount: selectCartItemsCount(store)
+const bindStoreToProps = createStructuredSelector({
+  itemCount: selectCartItemsCount
 })
 
 export default connect(bindStoreToProps, bindActionToProps)(CartIcon)
