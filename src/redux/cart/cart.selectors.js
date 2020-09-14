@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 
 const selectCart = state => state.cart;
 
+// these selectors wont pass new props if the selected values don't change
 // memoized selector to prevent repaints
 export const selectCartItems = createSelector(
   [selectCart],
