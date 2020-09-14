@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
+import './header.styles.scss';
 import { auth } from '../../firebase/firebase.utils';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component'
-import './header.styles.scss';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
 
 const Header = ({ currentUser, hidden }) => (
   <div className='header'>
@@ -34,9 +37,16 @@ const Header = ({ currentUser, hidden }) => (
   </div>
 );
 
-const bindStoreToProps = ({ user: { currentUser }, cart: { hidden }}) => ({
-  currentUser: currentUser,
-  hidden: hidden
+// how to write without structuredselector:
+// 
+// const bindStoreToProps = store => ({
+//   currentUser: selectCurrentUser(store),
+//   hidden: selectCartHidden(store)
+// })
+
+const bindStoreToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden
 })
 
 export default connect(bindStoreToProps)(Header);
