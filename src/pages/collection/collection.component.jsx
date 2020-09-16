@@ -8,9 +8,15 @@ import CollectionItem from '../../components/collection-item/collection-item.com
 const CollectionPage = ({ match, collection }) => {
 console.log(match, 'matchCat')
 console.log(collection)
+const { title, items } = collection
 return (
-  <div className="category">
-    <h2>CATEGORY PAGE</h2>
+  <div className="collection-page">
+    <div className="title">{title}</div>
+    <div className="items">
+      {items.map(item => (
+        <CollectionItem key={item.id} item={item} />
+      ))}
+    </div>
   </div>
 )
 }
