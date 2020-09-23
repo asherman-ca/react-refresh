@@ -20,3 +20,4 @@ Deployment:
 initial FE deploy command: heroku create react-refresh --buildpack https://github.com/mars/create-react-app-buildpack.git
   -using buildpack means we dont need to run npm build ourselves - yay create react app!
 
+-auto deploy on master push guide: https://devcenter.heroku.com/articles/github-integration
