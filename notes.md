@@ -15,3 +15,8 @@ Stripe:
 Concept Notes:
 -data normalization = turning an array into an object before it's contents are ever referenced
 -"What we do as devs: Receive data and present that data to a user, a customer and we let the customer manipulate that data. But we engineer that, how it flows how it moves how it changes is our job."
+
+Deployment:
+initial FE deploy command: heroku create react-refresh --buildpack https://github.com/mars/create-react-app-buildpack.git
+  -using buildpack means we dont need to run npm build ourselves - yay create react app!
+

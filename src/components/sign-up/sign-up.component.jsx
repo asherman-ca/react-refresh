@@ -35,6 +35,7 @@ class SignUp extends React.Component {
         password
       );
 
+      // creates a new user from the auth token returned from auth.createUserWith...
       await createUserProfileDocument(user, { displayName });
 
       this.setState({
