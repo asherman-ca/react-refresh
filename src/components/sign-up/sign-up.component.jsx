@@ -36,6 +36,7 @@ class SignUp extends React.Component {
       );
 
       // creates a new user from the auth token returned from auth.createUserWith...
+      // seems like this is redundant as it will happen in app.js when component remounts from the auth action above? test?
       await createUserProfileDocument(user, { displayName });
 
       this.setState({

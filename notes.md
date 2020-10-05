@@ -18,6 +18,9 @@ Concept Notes:
 Styling:
 -CSS in JS solves the global scope of CSS declarations. instead, styling is scoped to the element and it's children.
 
+SQL vs noSQL:
+noSQL doesnt appear to have field restrictions for document creation (no typing)
+
 Deployment:
 initial FE deploy command: heroku create react-refresh --buildpack https://github.com/mars/create-react-app-buildpack.git
   -using buildpack means we dont need to run npm build ourselves - yay create react app!

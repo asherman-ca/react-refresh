@@ -25,6 +25,7 @@ class App extends React.Component {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth)
 
+        // onsnapshot behaves in the same manner as onauthstatechanged above
         userRef.onSnapshot(snapShot => {
           setCurrentUser({
             id: snapShot.id,
@@ -38,7 +39,8 @@ class App extends React.Component {
           //   // setstate is async and requires console log to be called in this manner to avoid sync problems
           // }, () => console.log(this.state))
         })
-      } else {
+      } else { 
+      // userAuth is null if no one is signed in, which is default state
         setCurrentUser(userAuth)
       }
     })

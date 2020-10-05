@@ -21,8 +21,12 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   
   // uid = id for a google user that represents their auth to your site
   const userRef = firestore.doc(`users/${userAuth.uid}`);
-  
   const snapShot = await userRef.get();
+
+  const collectionRef = firestore.collection('users');
+  const collectionSnapshot = await collectionRef.get();
+
+  console.log(collectionSnapshot.docs.map(doc => doc.data()), 'collection ref');
   
   // if they have an auth without a user account, this creates one. mostly fires on initial auth.
   if (!snapShot.exists) {
@@ -41,6 +45,20 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   }
   
   return userRef;
+}
+
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  const collectionRef = firestore.collection(collectionKey)
+  console.log(collectionRef, 'collection reffff')
+
+  const batch = firestore.batch();
+  // taking advantage of fact that forEach doesn't return anything
+  objectsToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc();
+    // console.log(newDocRef);
+    batch.set(newDocRef, obj);
+  })
+  return await batch.commit()
 }
 
 export const auth = firebase.auth();

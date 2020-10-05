@@ -27,15 +27,16 @@ export const OptionsContainer = styled.div`
   } */
 `
 
-const OptionContainerStyles = css`
+// const OptionContainerStyles = css`
+//   padding: 10px 15px;
+//   cursor: pointer;
+// `
+
+export const OptionLink = styled(Link)`
   padding: 10px 15px;
   cursor: pointer;
 `
 
-export const OptionLink = styled(Link)`
-  ${OptionContainerStyles}
-`
-
-export const OptionDiv = styled.div`
-  ${OptionContainerStyles}
-`
+// export const OptionDiv = styled.div`
+//   ${OptionContainerStyles}
+// `

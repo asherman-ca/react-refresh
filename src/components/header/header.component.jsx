@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 // import './header.styles.scss';
-import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink, OptionDiv } from './header.styles.jsx'
+import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink} from './header.styles.jsx'
 
 import { auth } from '../../firebase/firebase.utils';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
@@ -28,7 +28,7 @@ const Header = ({ currentUser, hidden }) => (
       {
         currentUser ?
         <>
-        <OptionDiv onClick={() => auth.signOut()}>SIGN OUT</OptionDiv>
+        <OptionLink as='div' onClick={() => auth.signOut()}>SIGN OUT</OptionLink>
         </>
         :
         <OptionLink to='/signin'>SIGN IN</OptionLink>
