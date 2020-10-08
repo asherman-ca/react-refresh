@@ -35,7 +35,7 @@ class ShopPage extends React.Component {
     return(
       <div className='shop-page'>
         <Route exact path={`${match.path}`} render={(props) => <CollectionsOverviewWithSpinner isLoading={loading} {...props} />} />
-        <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
+        <Route path={`${match.path}/:collectionId`} render={(props) => <CollectionsPageWithSpinner isLoading={loading} {...props} />} />
       </div>
     )
   }
