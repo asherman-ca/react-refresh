@@ -47,19 +47,19 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 }
 
-export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
-  const collectionRef = firestore.collection(collectionKey)
-  console.log(collectionRef, 'collection reffff')
+// export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+//   const collectionRef = firestore.collection(collectionKey)
+//   console.log(collectionRef, 'collection reffff')
 
-  const batch = firestore.batch();
-  // taking advantage of fact that forEach doesn't return anything
-  objectsToAdd.forEach(obj => {
-    const newDocRef = collectionRef.doc();
-    // console.log(newDocRef);
-    batch.set(newDocRef, obj);
-  })
-  return await batch.commit()
-}
+//   const batch = firestore.batch();
+//   // taking advantage of fact that forEach doesn't return anything
+//   objectsToAdd.forEach(obj => {
+//     const newDocRef = collectionRef.doc();
+//     // console.log(newDocRef);
+//     batch.set(newDocRef, obj);
+//   })
+//   return await batch.commit()
+// }
 
 export const convertCollectionsSnapshotToMap = (collections) => {
   const transformedCollections = collections.docs.map(doc => {
