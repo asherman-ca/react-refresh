@@ -71,8 +71,11 @@ export const convertCollectionsSnapshotToMap = (collections) => {
       items
     }
   })
-  console.log(transformedCollections, 'xformed');
-  return transformedCollections;
+  // turns db array of collections back into object for initial state
+  return transformedCollections.reduce((accum, collection) => {
+    accum[collection.title.toLowerCase()] = collection;
+    return accum
+  }, {})
 } 
 
 export const auth = firebase.auth();
