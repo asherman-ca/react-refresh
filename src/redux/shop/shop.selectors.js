@@ -10,11 +10,11 @@ export const selectCollections = createSelector(
 // this turns an object into an array
 export const selectCollectionsForPreview = createSelector(
   [selectCollections],
-  collections => Object.keys(collections).map(key => collections[key])
+  collections => collections ? Object.keys(collections).map(key => collections[key]) : []
 )
 
 // this need lodash memoize added to actually work
 export const selectCollection = collectionUrlParam => createSelector(
   [selectCollections],
-  collections => collections[collectionUrlParam]
+  collections => collections ? collections[collectionUrlParam] : null
 )
