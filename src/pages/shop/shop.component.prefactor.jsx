@@ -20,10 +20,12 @@ class ShopPage extends React.Component {
   componentDidMount() {
     const { updateCollections } = this.props
     const collectionsRef = firestore.collection('collections')
-    collectionsRef.get().then(snapshot => {
-        const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-        updateCollections(collectionsMap);
-        this.setState({ loading: false })
+    // whenever the collectionsRef updates or whenever this gets run for the 1st time...(this is an active listener?)
+    collectionsRef.onSnapshot(async snapshot => {
+      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+      // console.log(collectionsMap);
+      updateCollections(collectionsMap);
+      this.setState({ loading: false })
     })
   }
 
