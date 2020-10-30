@@ -18,6 +18,7 @@ export const fetchCollectionsFailure = errorMessage => ({
 
 // this works because thunk middleware is enabled and recognizes the need to call the function with dispatch method as the first argument
 export const fetchCollectionsStartAsync = () => {
+  // !!! because we return a function instead of an object, the redux middleware flags this and adds dispatch for us
   return dispatch => {
     const collectionRef = firestore.collection('collections')
     dispatch(fetchCollectionsStart())

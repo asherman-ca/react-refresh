@@ -23,3 +23,9 @@ export const selectIsCollectionFetching = createSelector(
   [selectShop],
   shop => shop.isFetching
 )
+
+// double !! returns the boolean value of that data type, if collections is loaded and returns an object we'll get true. if null then false
+export const selectIsCollectionsLoaded = createSelector(
+  [selectShop],
+  shop => !!shop.collections
+)
