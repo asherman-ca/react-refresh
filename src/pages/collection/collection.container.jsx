@@ -6,8 +6,9 @@ import { selectIsCollectionsLoaded } from '../../redux/shop/shop.selectors'
 import WithSpinner from '../../components/with-spinner/with-spinner.component'
 import CollectionPage from './collection.component';
 
+// we use the function call passing state in order to flip the boolean value
 const bindStoreToProps = createStructuredSelector({
-  isCollectionsLoaded: selectIsCollectionsLoaded
+  isLoading: state => !selectIsCollectionsLoaded(state)
 })
 
 const CollectionPageContainer = compose(
