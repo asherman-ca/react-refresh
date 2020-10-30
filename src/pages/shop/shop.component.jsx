@@ -11,10 +11,6 @@ import CollectionPageContainer from '../collection/collection.container'
 import CollectionPage from '../collection/collection.component'
 import WithSpinner from '../../components/with-spinner/with-spinner.component';
 
-// const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
-
-const CollectionsPageWithSpinner = WithSpinner(CollectionPage);
-
 class ShopPage extends React.Component {
   componentDidMount() {
     const { fetchCollectionsStartAsync } = this.props;
@@ -22,7 +18,7 @@ class ShopPage extends React.Component {
   }
 
   render() {
-    const { match, isCollectionsLoaded } = this.props;
+    const { match } = this.props;
 
     return(
       <div className='shop-page'>
@@ -39,12 +35,8 @@ class ShopPage extends React.Component {
   }
 }
 
-const bindStoreToProps = createStructuredSelector({
-  isCollectionsLoaded: selectIsCollectionsLoaded
-})
-
 const bindActionToProps = dispatch => ({
   fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync())
 })
 
-export default connect(bindStoreToProps, bindActionToProps)(ShopPage)
+export default connect(null, bindActionToProps)(ShopPage)
