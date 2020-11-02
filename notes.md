@@ -24,6 +24,9 @@ noSQL doesnt appear to have field restrictions for document creation (no typing)
 Redux-Thunk:
 -A piece of middleware that allows us to fire functions
 
+Hooks:
+a solution to the bloat and confusion of class components with lifecycle methods. instead uses function components
+
 Deployment:
 initial FE deploy command: heroku create react-refresh --buildpack https://github.com/mars/create-react-app-buildpack.git
   -using buildpack means we dont need to run npm build ourselves - yay create react app!
